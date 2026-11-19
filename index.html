@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbearia Barreto — Sistema de Agendamento Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #09090b;
+      color: #f4f4f5;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      filter: invert(0.85);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col selection:bg-amber-500 selection:text-zinc-950">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full px-4 sm:px-0"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80">
+    <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-xl bg-amber-500 text-zinc-950 flex items-center justify-center font-black text-xl shadow-md">
+          ✂
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="brand-name" class="font-bold text-white text-lg tracking-tight">Barbearia Barreto</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30 font-semibold uppercase">
+              Fases 1, 2 e 3 Completas
+            </span>
+          </div>
+          <p id="brand-address" class="text-xs text-zinc-400">Agendamento Online</p>
+        </div>
+      </div>
+
+      <!-- Navigation Switcher -->
+      <nav
+        class="flex items-center gap-1.5 bg-zinc-900/90 p-1 rounded-xl border border-zinc-800 self-start sm:self-auto">
+        <button type="button" data-nav-btn="CLIENT" onclick="App.switchView('CLIENT')">
+          📅 Agendar Horário
+        </button>
+        <button type="button" data-nav-btn="CLIENT_MY_APPTS" onclick="App.switchView('CLIENT_MY_APPTS')">
+          🔍 Meus Horários
+        </button>
+        <button type="button" data-nav-btn="ADMIN" onclick="App.switchView('ADMIN')">
+          ⚙️ Área do Barbeiro
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="app-root" class="flex-1 max-w-6xl w-full mx-auto px-4 py-6"></main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-900 py-5 text-center text-xs text-zinc-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <span>© Barbearia Barreto — Rua Antônio Ribeiro de Carvalho, 150 - Max Neuman 2</span>
+      <span>WhatsApp: <strong class="text-zinc-300">(34) 98803-4880</strong></span>
+    </div>
+  </footer>
+
+  <!-- Scripts modulares -->
+  <script src="js/db.js"></script>
+  <script src="js/whatsapp.js"></script>
+  <script src="js/scheduler.js"></script>
+  <script src="js/phase3.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
